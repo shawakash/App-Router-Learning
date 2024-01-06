@@ -1,0 +1,10 @@
+{
+    "name": "repo_manager!",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.copilot"
+            ]
+        }
+    }
+}
