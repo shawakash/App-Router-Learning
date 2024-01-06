@@ -13,16 +13,22 @@ import React, { use } from 'react';
 
 export type CardProps = React.ComponentProps<typeof Card>
 
-const NewUser= async () => {
-    const res = await axios({
-        method: "get",
-        baseURL: "https://jsonplaceholder.typicode.com",
-        url: "/users",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-    const users: User[] = res.data;
+const NewUser = async () => {
+
+    /**
+     * Caching: 
+     * Axios doesn't provides caching so use fetch
+     */
+    const res = await fetch(
+        "https://jsonplaceholder.typicode.com/users",
+        {
+            headers: {
+                "Content-Type": "applications/json"
+            },
+            // cache: 'force-cache', // to cache the response from api,
+            next: {revalidate: 10}   // fetches the api again in 10 seconds of time in background
+        });
+    const users: User[] = await res.json();
     return (
         <>
             <AddToCart />
@@ -31,7 +37,7 @@ const NewUser= async () => {
             </h1>
             <div className="flex justify-center flex-col items-center p-16">
                 <div className="flex flex-wrap gap-14 justify-center items-start">
-                    <Users 
+                    <Users
                         users={users}
                     />
                 </div>

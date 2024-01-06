@@ -3,12 +3,10 @@
 import { User } from '@/app/types/interface';
 import { CardProps } from '@/app/users/newuser/page';
 import React from 'react';
-import AddToCart from '@/app/components/Client/AddToCart';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/app/components/Client/Card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import axios from 'axios';
-import { Chrome, Home, LampDesk, Mail, Smartphone } from 'lucide-react';
+import { Chrome, LampDesk, Mail, Smartphone } from 'lucide-react';
 import Link from 'next/link';
 
 const Users: React.FC<CardProps & {users: User[]}> = ({ users, className, ...props }) => {
