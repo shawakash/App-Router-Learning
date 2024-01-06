@@ -1,9 +1,10 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 
 const AddToCart = () => {
+    const [count, setCount] = useState<number>(0);
     return (
-        <button onClick={() => { alert("hola") }}>NewUser</button>
+        <button onClick={() => { setCount((c) => c+1) }}>Count: {count}</button>
     );
 }
 
