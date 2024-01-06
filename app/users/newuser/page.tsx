@@ -1,13 +1,9 @@
+//server component
 import AddToCart from '@/app/components/Client/AddToCart';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/app/components/Client/Card';
 import Users from '@/app/components/Client/Users';
 import { User } from '@/app/types/interface';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import axios from 'axios';
-import { Chrome, Home, LampDesk, Mail, Smartphone } from 'lucide-react';
-import Link from 'next/link';
-import React, { use } from 'react';
+import React from 'react';
 
 
 
@@ -17,6 +13,8 @@ const NewUser = async () => {
 
     /**
      * Caching: 
+     * by default nextjs renders statically and cached it unless 
+     * cache is no-store.
      * Axios doesn't provides caching so use fetch
      */
     const res = await fetch(
@@ -25,8 +23,8 @@ const NewUser = async () => {
             headers: {
                 "Content-Type": "applications/json"
             },
-            // cache: 'force-cache', // to cache the response from api,
-            next: {revalidate: 10}   // fetches the api again in 10 seconds of time in background
+            cache: 'no-store', // to cache the response from api,
+            // next: { revalidate: 10 }   // fetches the api again in 10 seconds of time in background
         });
     const users: User[] = await res.json();
     return (
